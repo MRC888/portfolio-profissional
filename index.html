@@ -490,6 +490,79 @@ section.section-visible>.wrap>.eyebrow::before{transform:scaleX(1)}
   .motion-block::before{transform:scaleX(1)!important}
   .motion-block::after{opacity:.8!important;transform:scale(1)!important}
 }
+
+/* Motion v8 - creative polish only. No spacing/layout changes. */
+#data-field{
+  position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;
+  opacity:.32;mix-blend-mode:screen;
+}
+main,footer{position:relative;z-index:1}
+.visual{position:relative}
+.visual.motion-scan::after{
+  content:"";position:absolute;left:0;right:0;top:-18%;height:18%;
+  pointer-events:none;opacity:0;
+  background:linear-gradient(180deg,transparent,rgba(88,220,255,.10),transparent);
+}
+.visual.motion-scan.scan-active::after{animation:visualScan 1.35s .18s var(--ease-out) both}
+@keyframes visualScan{
+  0%{opacity:0;transform:translateY(0)}
+  18%{opacity:.88}
+  82%{opacity:.48}
+  100%{opacity:0;transform:translateY(650%)}
+}
+.project .copy{position:relative}
+.project .copy.motion-spark::before{
+  content:"";position:absolute;left:-18px;top:2px;width:1px;height:0;
+  background:linear-gradient(var(--cyan),rgba(88,220,255,0));
+  box-shadow:0 0 12px rgba(88,220,255,.25);
+  animation:copyTrace .85s .15s var(--ease-out) forwards;
+}
+@keyframes copyTrace{to{height:58px}}
+.barca-dashboard{isolation:isolate}
+.barca-dashboard-svg .dash-line{stroke-dasharray:1100;stroke-dashoffset:1100}
+.barca-dashboard.dash-active .dash-line-1{animation:dashDraw 1.4s .12s var(--ease-out) forwards}
+.barca-dashboard.dash-active .dash-line-2{animation:dashDraw 1.4s .28s var(--ease-out) forwards}
+.barca-dashboard-svg .dash-dot{opacity:.12}
+.barca-dashboard.dash-active .dash-dot{animation:dashDot .35s .9s ease forwards}
+.barca-dashboard-svg .dash-bar,.barca-dashboard-svg .dash-bar-muted{
+  transform-box:fill-box;transform-origin:left center;transform:scaleX(0)
+}
+.barca-dashboard.dash-active .dash-bar{animation:dashBar .72s .68s var(--ease-out) forwards}
+.barca-dashboard.dash-active .dash-bar-muted{animation:dashBar .72s .82s var(--ease-out) forwards}
+.barca-dashboard-svg .dash-kpi,.barca-dashboard-svg .dash-panel{
+  opacity:.22;transform:translateY(6px);transform-box:fill-box;transform-origin:center
+}
+.barca-dashboard.dash-active .dash-kpi{animation:dashFade .62s var(--ease-out) forwards}
+.barca-dashboard.dash-active .dash-kpi:nth-of-type(1){animation-delay:.04s}
+.barca-dashboard.dash-active .dash-kpi:nth-of-type(2){animation-delay:.10s}
+.barca-dashboard.dash-active .dash-kpi:nth-of-type(3){animation-delay:.16s}
+.barca-dashboard.dash-active .dash-kpi:nth-of-type(4){animation-delay:.22s}
+.barca-dashboard.dash-active .dash-panel{animation:dashFade .7s .30s var(--ease-out) forwards}
+@keyframes dashDraw{to{stroke-dashoffset:0}}
+@keyframes dashDot{to{opacity:1}}
+@keyframes dashBar{to{transform:scaleX(1)}}
+@keyframes dashFade{to{opacity:1;transform:translateY(0)}}
+.metric strong.counting{font-variant-numeric:tabular-nums}
+.cursor-orbit{
+  position:fixed;z-index:4;width:110px;height:110px;border-radius:50%;
+  pointer-events:none;opacity:0;border:1px solid rgba(88,220,255,.08);
+  box-shadow:inset 0 0 32px rgba(88,220,255,.025);
+  transform:translate(-50%,-50%) scale(.82);
+  transition:opacity .25s ease,transform .35s var(--ease-out);
+}
+.cursor-orbit::before,.cursor-orbit::after{
+  content:"";position:absolute;border-radius:50%;background:var(--cyan)
+}
+.cursor-orbit::before{width:4px;height:4px;left:13px;top:25px;box-shadow:0 0 14px rgba(88,220,255,.7)}
+.cursor-orbit::after{width:2px;height:2px;right:18px;bottom:23px;opacity:.7}
+.cursor-orbit.active{opacity:.62;transform:translate(-50%,-50%) scale(1)}
+@media(max-width:900px),(prefers-reduced-motion:reduce){
+  #data-field,.cursor-orbit{display:none!important}
+  .barca-dashboard-svg .dash-line{stroke-dashoffset:0!important}
+  .barca-dashboard-svg .dash-dot{opacity:1!important}
+  .barca-dashboard-svg .dash-bar,.barca-dashboard-svg .dash-bar-muted{transform:none!important}
+  .barca-dashboard-svg .dash-kpi,.barca-dashboard-svg .dash-panel{opacity:1!important;transform:none!important}
+}
 </style></head><body>
 <header id="hdr"><a class="brand" href="#top">Marcelo Santos</a><nav><a href="#projetos" data-pt="Projetos" data-en="Projects">Projetos</a><a href="#sobre" data-pt="Sobre" data-en="About">Sobre</a><a href="#experiencia" data-pt="Experiência" data-en="Experience">Experiência</a><a href="#skills" data-pt="Competências" data-en="Skills">Competências</a><a href="#contato" data-pt="Contato" data-en="Contact">Contato</a><button class="lang" id="lang">PT-BR / EN</button></nav></header>
 <main>
