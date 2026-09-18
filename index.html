@@ -298,6 +298,198 @@ footer{padding:24px 0}
   .certs{margin-top:20px}
   .complementary{margin-top:52px;padding-top:34px}
 }
+
+/* Rhythm and Motion v7 */
+:root{
+  --section-space:clamp(72px,7vw,96px);
+  --project-space:clamp(68px,6.4vw,88px);
+  --block-gap:clamp(18px,1.8vw,24px);
+  --intro-gap:clamp(30px,3vw,40px);
+}
+section{padding:var(--section-space) 0}
+section>.wrap>.eyebrow{margin-bottom:11px}
+section>.wrap>h2{margin:0 0 18px;max-width:1000px}
+section>.wrap>.lead{margin:0;max-width:830px}
+section>.wrap>.lead + .lead{margin-top:13px!important}
+
+/* Consistent spacing between information blocks */
+#sobre .cards3,
+#skills .skills,
+#formacao .edu,
+#experiencia .timeline,
+.complementary-grid,
+.other,
+.soon{margin-top:var(--intro-gap)}
+.cards3,.skills,.edu,.other,.soon,.complementary-grid{gap:var(--block-gap)}
+#sobre .cards3{gap:20px}
+#skills .skills{gap:20px}
+#formacao .edu{gap:20px}
+#experiencia .roleline{margin-top:26px}
+#experiencia .timeline{margin-top:26px}
+.tl{padding:24px 0;gap:24px}
+.certs{
+  margin-top:32px;
+  padding-top:20px;
+  gap:0 38px;
+  border-top:1px solid rgba(255,255,255,.075);
+}
+.cert{padding:14px 0}
+.langline{margin-top:20px}
+#formacao .links{margin-top:13px!important}
+
+/* Projects: each case reads as a distinct, compact block */
+#projetos .lead + .project{margin-top:52px}
+#projetos .project{gap:clamp(34px,4.2vw,58px)}
+#projetos .project + .case{margin-top:28px}
+#projetos .case + .project{margin-top:var(--project-space)}
+.project .metrics{margin:20px 0 18px}
+.project .chips{margin:17px 0 15px}
+.project-links{margin-top:16px}
+.case{padding:24px}
+.casegrid{margin-top:19px;gap:12px}
+.complementary{margin-top:72px;padding-top:46px}
+.complementary-grid{margin-top:32px}
+.comp-card{padding:28px}
+
+/* Discreet block punctuation. It only animates on scroll, never on hover. */
+.motion-block{position:relative}
+.motion-block::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:-15px;
+  width:54px;
+  height:1px;
+  background:linear-gradient(90deg,var(--cyan),rgba(88,220,255,0));
+  transform:scaleX(0);
+  transform-origin:left center;
+  opacity:.72;
+  transition:transform .9s var(--ease-out),opacity .5s ease;
+  pointer-events:none;
+}
+.motion-block::after{
+  content:"";
+  position:absolute;
+  left:0;
+  top:-17px;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:var(--cyan);
+  box-shadow:0 0 14px rgba(88,220,255,.45);
+  opacity:0;
+  transform:scale(.4);
+  transition:opacity .45s ease,transform .7s var(--ease-out);
+  pointer-events:none;
+}
+.motion-block.block-visible::before{transform:scaleX(1)}
+.motion-block.block-visible::after{opacity:.9;transform:scale(1)}
+
+/* Standardized reveal language */
+.motion-v7 .motion-item{
+  opacity:0;
+  transform:translate3d(0,18px,0);
+  transition:
+    opacity .72s var(--ease-soft),
+    transform .86s var(--ease-out);
+  transition-delay:var(--motion-delay,0ms);
+  will-change:opacity,transform;
+}
+.motion-v7 .motion-item.motion-left{transform:translate3d(-22px,10px,0)}
+.motion-v7 .motion-item.motion-right{transform:translate3d(22px,10px,0)}
+.motion-v7 .motion-item.motion-soft{transform:translate3d(0,12px,0) scale(.992)}
+.motion-v7 .motion-item.is-visible{
+  opacity:1;
+  transform:translate3d(0,0,0) scale(1);
+}
+
+/* A one-time border settle makes blocks feel alive without implying clickability. */
+@keyframes blockSettle{
+  0%{border-color:rgba(88,220,255,.04);box-shadow:0 0 0 rgba(0,0,0,0)}
+  55%{border-color:rgba(88,220,255,.16);box-shadow:0 16px 42px rgba(0,0,0,.10)}
+  100%{border-color:var(--border);box-shadow:0 0 0 rgba(0,0,0,0)}
+}
+.motion-v7 .card.motion-item.is-visible,
+.motion-v7 .comp-card.motion-item.is-visible,
+.motion-v7 .case.motion-item.is-visible{
+  animation:blockSettle .95s var(--motion-delay,0ms) var(--ease-out) both;
+}
+
+/* Section label accent grows in with the section. */
+section>.wrap>.eyebrow{position:relative;padding-left:0;transition:padding-left .6s var(--ease-out)}
+section.section-visible>.wrap>.eyebrow{padding-left:14px}
+section>.wrap>.eyebrow::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:50%;
+  width:6px;
+  height:1px;
+  background:var(--cyan);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .65s .08s var(--ease-out);
+}
+section.section-visible>.wrap>.eyebrow::before{transform:scaleX(1)}
+
+/* Dashboard remains untouched by transforms for maximum vector sharpness. */
+.barca-dashboard,
+.barca-dashboard *{backface-visibility:visible}
+.barca-dashboard.motion-item,
+.barca-dashboard.motion-item.is-visible{
+  opacity:1!important;
+  transform:none!important;
+  transition:none!important;
+  will-change:auto!important;
+}
+
+/* Slightly stronger grouping without heavy cards */
+.card,.case,.comp-card{
+  border-color:rgba(255,255,255,.095);
+}
+.skills .card,.edu .card,.cards3 .card{
+  min-height:100%;
+}
+
+/* More elegant desktop rhythm */
+@media(min-width:901px){
+  #sobre .cards3{align-items:stretch}
+  #skills .skills{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #formacao .edu{align-items:stretch}
+}
+
+/* Balanced mobile spacing */
+@media(max-width:900px){
+  :root{--section-space:70px;--project-space:66px;--intro-gap:30px}
+  #projetos .lead + .project{margin-top:42px}
+  #projetos .case + .project{margin-top:64px}
+  .cards3,.skills,.edu,.other,.soon,.complementary-grid{gap:16px}
+}
+@media(max-width:650px){
+  :root{--section-space:60px;--project-space:56px;--intro-gap:25px}
+  section>.wrap>h2{margin-bottom:15px}
+  #projetos .lead + .project{margin-top:35px}
+  #projetos .project{gap:30px}
+  #projetos .project + .case{margin-top:20px}
+  #projetos .case + .project{margin-top:54px}
+  .certs{margin-top:26px;padding-top:16px}
+  .motion-block::before{top:-12px;width:42px}
+  .motion-block::after{top:-14px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .motion-v7 .motion-item,
+  .motion-block::before,
+  .motion-block::after,
+  section>.wrap>.eyebrow,
+  section>.wrap>.eyebrow::before{
+    transition:none!important;
+    animation:none!important;
+  }
+  .motion-v7 .motion-item{opacity:1!important;transform:none!important}
+  .motion-block::before{transform:scaleX(1)!important}
+  .motion-block::after{opacity:.8!important;transform:scale(1)!important}
+}
 </style></head><body>
 <header id="hdr"><a class="brand" href="#top">Marcelo Santos</a><nav><a href="#projetos" data-pt="Projetos" data-en="Projects">Projetos</a><a href="#sobre" data-pt="Sobre" data-en="About">Sobre</a><a href="#experiencia" data-pt="Experiência" data-en="Experience">Experiência</a><a href="#skills" data-pt="Competências" data-en="Skills">Competências</a><a href="#contato" data-pt="Contato" data-en="Contact">Contato</a><button class="lang" id="lang">PT-BR / EN</button></nav></header>
 <main>
@@ -364,7 +556,7 @@ footer{padding:24px 0}
 </main><footer><div class="wrap">Marcelo Santos · Data Analyst · 2026 · <span data-pt="Obrigado pela visita." data-en="Thanks for visiting.">Obrigado pela visita.</span></div></footer>
 <script>
 const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-document.documentElement.classList.add('motion-ready');
+document.documentElement.classList.add('motion-ready','motion-v7');
 
 let lang=localStorage.getItem('portfolio-language')||'pt';
 const b=document.getElementById('lang');
@@ -399,51 +591,78 @@ function updateScrollUI(){
 addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(updateScrollUI);ticking=true}},{passive:true});
 updateScrollUI();
 
-const revealTargets=[];
+const motionTargets=[];
+const addMotion=(el,type='motion-soft',delay=0)=>{
+  if(!el)return;
+  el.classList.add('motion-item',type);
+  el.style.setProperty('--motion-delay',`${delay}ms`);
+  motionTargets.push(el);
+};
+
 document.querySelectorAll('section:not(.hero) .wrap').forEach(w=>{
-  const intro=[...w.children].filter(el=>el.matches('.eyebrow,h2,.lead,.roleline'));
-  intro.forEach((el,i)=>{el.classList.add('reveal');el.style.setProperty('--delay',`${i*70}ms`);revealTargets.push(el)});
+  [...w.children]
+    .filter(el=>el.matches('.eyebrow,h2,.lead,.roleline'))
+    .forEach((el,i)=>addMotion(el,'motion-soft',i*55));
 });
-document.querySelectorAll('.project').forEach((p,i)=>{
-  const copy=p.querySelector('.copy');
-  const visual=p.querySelector('.visual');
-  if(copy){copy.classList.add('reveal',i%2?'from-right':'from-left');revealTargets.push(copy)}
-  if(visual){visual.classList.add('reveal',i%2?'from-left':'from-right');visual.style.setProperty('--delay','90ms');revealTargets.push(visual)}
+
+document.querySelectorAll('.project').forEach((project,i)=>{
+  addMotion(project.querySelector('.copy'),i%2?'motion-right':'motion-left',0);
+  const visual=project.querySelector('.visual');
+  if(visual&&!visual.classList.contains('barca-dashboard'))addMotion(visual,i%2?'motion-left':'motion-right',80);
 });
-document.querySelectorAll('.case,.card,.tl,.cert,.contact .wrap>div').forEach((el,i)=>{
-  el.classList.add('reveal');
-  el.style.setProperty('--delay',`${(i%4)*55}ms`);
-  revealTargets.push(el)
+
+const blockSelectors='.cards3,.skills,.edu,.timeline,.certs,.complementary-grid,.other,.soon';
+document.querySelectorAll(blockSelectors).forEach(block=>{
+  block.classList.add('motion-block');
+  [...block.children].forEach((child,i)=>{
+    if(child.matches('.card,.tl,.cert,.comp-card'))addMotion(child,'motion-soft',Math.min(i,5)*65);
+  });
 });
+
+document.querySelectorAll('.case').forEach((el,i)=>addMotion(el,'motion-soft',(i%3)*55));
+document.querySelectorAll('.contact .wrap>div').forEach((el,i)=>addMotion(el,'motion-soft',i*70));
+
+const showAll=()=>{
+  motionTargets.forEach(el=>el.classList.add('is-visible'));
+  document.querySelectorAll('.motion-block').forEach(el=>el.classList.add('block-visible'));
+  document.querySelectorAll('main > section[id]').forEach(el=>el.classList.add('section-visible'));
+};
 
 if(!reduceMotion&&'IntersectionObserver'in window){
   const observer=new IntersectionObserver(entries=>{
     entries.forEach(entry=>{
-      if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
     })
-  },{threshold:.12,rootMargin:'0px 0px -7% 0px'});
-  revealTargets.forEach(el=>observer.observe(el));
+  },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+  motionTargets.forEach(el=>observer.observe(el));
+
+  const blockObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('block-visible');
+        blockObserver.unobserve(entry.target);
+      }
+    })
+  },{threshold:.1,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.motion-block').forEach(el=>blockObserver.observe(el));
 }else{
-  revealTargets.forEach(el=>el.classList.add('is-visible'));
-  document.querySelectorAll('main > section[id]').forEach(el=>el.classList.add('section-visible'));
-  document.querySelectorAll('.project').forEach(el=>el.classList.add('project-visible'));
+  showAll();
 }
 
+/* Safety fallback: content never remains hidden if an observer is interrupted. */
+setTimeout(showAll,2200);
 
 const sections=[...document.querySelectorAll('main > section[id]')];
 const navLinks=[...document.querySelectorAll('nav a[href^="#"]')];
-const sectionById=new Map(sections.map(sec=>[sec.id,sec]));
 
 if('IntersectionObserver' in window){
   const sectionObserver=new IntersectionObserver(entries=>{
     entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('section-visible')});
-  },{threshold:.08,rootMargin:'0px 0px -18% 0px'});
+  },{threshold:.08,rootMargin:'0px 0px -16% 0px'});
   sections.forEach(sec=>sectionObserver.observe(sec));
-
-  const projectObserver=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('project-visible');projectObserver.unobserve(entry.target)}});
-  },{threshold:.22,rootMargin:'0px 0px -10% 0px'});
-  document.querySelectorAll('.project').forEach(project=>projectObserver.observe(project));
 }
 
 function updateActiveNav(){
@@ -457,13 +676,28 @@ updateActiveNav();
 
 const hero=document.querySelector('.hero');
 if(hero&&!reduceMotion){
-  const grid=hero.querySelectorAll('.grid');
+  const grid=hero.querySelector('.grid');
   let parallaxTick=false;
   const updateParallax=()=>{
-    if(grid){grid.style.transform=`translate3d(0,${Math.min(28,window.scrollY*.055)}px,0) scale(1.03)`}
+    if(grid)grid.style.transform=`translate3d(0,${Math.min(26,window.scrollY*.05)}px,0) scale(1.025)`;
     parallaxTick=false;
   };
   addEventListener('scroll',()=>{if(!parallaxTick){requestAnimationFrame(updateParallax);parallaxTick=true}},{passive:true});
+
+  let pointerTick=false,px=74,py=38;
+  hero.addEventListener('pointermove',e=>{
+    const rect=hero.getBoundingClientRect();
+    px=((e.clientX-rect.left)/rect.width)*100;
+    py=((e.clientY-rect.top)/rect.height)*100;
+    if(!pointerTick){
+      requestAnimationFrame(()=>{
+        hero.style.setProperty('--mx',`${px}%`);
+        hero.style.setProperty('--my',`${py}%`);
+        pointerTick=false;
+      });
+      pointerTick=true;
+    }
+  },{passive:true});
 }
 </script>
 </body></html>
