@@ -51,7 +51,7 @@ Investigação quantitativa sobre padrões de posse, passes e desempenho competi
 - **Entrega:** análise de tendências, comparação entre ligas e temporadas e documentação dos achados e das limitações do estudo, sem afirmar causalidade direta.
 - **Ferramentas:** SQL, PostgreSQL, Python, Pandas, Matplotlib e Excel.
 
-![Apresentação do Barcelona Sports Analytics, com gráfico de posse média por era](barcelona-sports-analytics.png)
+![Dashboard do Barcelona Sports Analytics](barcelona-dashboard.svg)
 
 **[Consultar análise, código e documentação ↗](https://github.com/MRC888/barcelona-sports-analytics)**
 
