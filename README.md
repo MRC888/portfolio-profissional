@@ -5,11 +5,11 @@
 
 Problemas reais. Dados estruturados. Decisões mais claras.
 
-**[Explorar o portfólio ↗](https://marcelo-santos-data-marcelo123000-8683.vercel.app)** · [LinkedIn](https://www.linkedin.com/in/marcelo-augusto-santos88) · [Currículo em PDF](cv.pdf)
+**[Explorar o portfólio ↗](https://marcelo-santos-data-nrbw3dqxn-marcelo123000-8683.vercel.app)** · [LinkedIn](https://www.linkedin.com/in/marcelo-augusto-santos88) · [Currículo em PDF](cv.pdf)
 
 </div>
 
-[![Página inicial do portfólio de Marcelo Santos: Transformando dados em inteligência](portfolio-home.png)](https://marcelo-santos-data-marcelo123000-8683.vercel.app)
+[![Página inicial do portfólio de Marcelo Santos: Transformando dados em inteligência](portfolio-home.png)](https://marcelo-santos-data-nrbw3dqxn-marcelo123000-8683.vercel.app)
 
 ## Sobre o portfólio
 
@@ -95,4 +95,4 @@ Acesse `http://localhost:8000`. O dashboard do Barcelona é versionado junto ao 
 
 Para oportunidades em **Análise de Dados e Business Intelligence**, entre em contato pelo [LinkedIn](https://www.linkedin.com/in/marcelo-augusto-santos88) ou pelo [e-mail profissional](mailto:marcelo123000@hotmail.com).
 
-**[Visitar o portfólio completo ↗](https://marcelo-santos-data-marcelo123000-8683.vercel.app)**
+**[Visitar o portfólio completo ↗](https://marcelo-santos-data-nrbw3dqxn-marcelo123000-8683.vercel.app)**
