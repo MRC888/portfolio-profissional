@@ -75,7 +75,7 @@ As ferramentas de análise listadas nos cases pertencem aos respectivos projetos
 ├── cv.pdf                         # Currículo profissional atualizado
 ├── portfolio-home.png             # Capa do portfólio
 ├── case-financeiro.png            # Apresentação do case financeiro
-├── barcelona-sports-analytics.png  # Apresentação do projeto esportivo
+├── barcelona-dashboard.svg         # Dashboard do Barcelona Sports Analytics
 └── README.md
 ```
 
@@ -89,7 +89,7 @@ Opcionalmente, com Python instalado, execute na pasta do projeto:
 python -m http.server 8000
 ```
 
-Acesse `http://localhost:8000`. O gráfico do Barcelona exibido no site é carregado do repositório público do projeto e requer conexão à internet.
+Acesse `http://localhost:8000`. O dashboard do Barcelona é versionado junto ao site em SVG para manter nitidez, carregamento leve e consistência visual.
 
 ## Contato
 
