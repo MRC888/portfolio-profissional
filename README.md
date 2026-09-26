@@ -96,3 +96,10 @@ Acesse `http://localhost:8000`. O dashboard do Barcelona é versionado junto ao 
 Para oportunidades em **Análise de Dados e Business Intelligence**, entre em contato pelo [LinkedIn](https://www.linkedin.com/in/marcelo-augusto-santos88) ou pelo [e-mail profissional](mailto:marcelo123000@hotmail.com).
 
 **[Visitar o portfólio completo ↗](https://marcelo-santos-data.vercel.app)**
+
+
+### Foods & Goods — logística com SQL e Python
+
+Do panorama geral à comparação das distâncias de entregas de moto e do custo registrado por km nos estados dos hubs. Inclui contexto simulado, métodos, resultados e limites, sem equiparar custo à remuneração do entregador.
+
+[Ver projeto no GitHub](https://github.com/MRC888/foods-and-goods) · [Notebook](https://github.com/MRC888/foods-and-goods/blob/main/01_logistica.ipynb)
