@@ -13,69 +13,125 @@ Problemas reais. Dados estruturados. Decisões mais claras.
 
 ## Sobre o portfólio
 
-Sou Marcelo Santos e atuo na interface entre dados, processos e negócio, com experiência prática no setor fiscal e financeiro. Este portfólio reúne minha trajetória e projetos que mostram como transformo uma pergunta de negócio em uma análise: estruturar o problema, preparar os dados, investigar padrões e comunicar resultados que apoiem decisões.
+Sou Marcelo Santos e atuo na interface entre **dados, processos e negócio**, com experiência prática no setor fiscal e financeiro. Este portfólio reúne projetos que mostram como trabalho uma análise de ponta a ponta: entender o problema, preparar e validar os dados, investigar padrões e transformar resultados em informação útil para decisão.
 
 **SQL · PostgreSQL · Python · Pandas · Excel · Power BI · Tableau**
 
 ## Projetos em destaque
 
-### 01 — Análise Financeira e Operacional para Decisão de Negócio
+### 01 — Foods & Goods
 
-**Business Analytics · Aplicação em um problema real**
+**Logistics Analytics · SQL + Python**
 
-O desempenho financeiro e a carga operacional de um cliente justificavam uma revisão dos honorários? A análise reuniu dados de faturamento, tributos, compras, despesas e operação para colocar essa decisão em uma base objetiva.
+Projeto construído a partir de uma base pública do Delivery Center para explorar a operação, padronizar os dados e investigar uma pergunta de logística: **como a distância das entregas de moto varia entre os estados atendidos?**
+
+| Pedidos concluídos | Período analisado | Análises iniciais |
+| :---: | :---: | :---: |
+| **352.020** | **120 dias** | **5** |
+
+- **Processo:** exploração da base, validação de registros e IDs, padronização dos indicadores, junções em SQL e análise em Python.
+- **Análise:** pedidos, GMV, ticket médio, variação mensal, distância média das entregas e custo registrado por km.
+- **Ferramentas:** PostgreSQL, SQL, Python, Pandas e Matplotlib.
+
+![Foods & Goods — análise logística](foods-and-goods.svg)
+
+**[Ver projeto no GitHub ↗](https://github.com/MRC888/foods-and-goods)** · **[Explorar notebook ↗](https://github.com/MRC888/foods-and-goods/blob/main/01_logistica.ipynb)**
+
+> A leitura é descritiva. O custo registrado na base não é tratado como remuneração do entregador, e a relação observada não é apresentada como evidência de causalidade.
+
+---
+
+### 02 — Análise de Honorário
+
+**Business Analytics · Projeto real**
+
+Case desenvolvido para avaliar, com dados, se o desempenho financeiro e a carga operacional de um cliente justificavam uma revisão dos honorários de atendimento.
 
 | Período consolidado | Lançamentos analisados | Cupons emitidos |
 | :---: | :---: | :---: |
 | **12 meses** | **26.639** | **7.853** |
 
-- **Processo:** coleta, tratamento, padronização e validação das informações; consultas SQL, indicadores e dashboards.
-- **Entrega:** diagnóstico do desempenho financeiro e do esforço operacional para apoiar a discussão sobre honorários.
+- **Processo:** consolidação, tratamento, padronização e validação das informações.
+- **Análise:** faturamento, tributos, compras, despesas, lucro e carga operacional.
+- **Entrega:** indicadores, consultas SQL e dashboards para transformar uma discussão subjetiva em uma decisão sustentada por evidências.
 - **Ferramentas:** SQL, PostgreSQL, Excel e Tableau.
 
-![Apresentação do case financeiro, com métricas de volume e percurso da análise](case-financeiro.png)
+![Apresentação do case financeiro](case-financeiro.png)
 
-O case é apresentado sem identificação do cliente ou valores financeiros sensíveis. As bases confidenciais não fazem parte deste repositório.
+O case é apresentado sem identificação do cliente ou exposição de valores financeiros sensíveis. As bases confidenciais não fazem parte deste repositório.
 
-### 02 — Barcelona Sports Analytics
+---
+
+### 03 — Barcelona Sports Analytics
 
 **Sports Analytics · Trabalho de Conclusão de Curso**
 
 Investigação quantitativa sobre padrões de posse, passes e desempenho competitivo no futebol europeu, com foco no modelo de jogo do Barcelona entre **2004/05 e 2019/20**.
 
-| Temporadas | Tabelas analíticas | Visualizações em Python |
+| Temporadas | Tabelas analíticas | Visualizações |
 | :---: | :---: | :---: |
 | **16** | **18** | **20** |
 
 - **Processo:** estruturação de hipóteses, limpeza e integração das bases, consultas SQL e validações de qualidade.
-- **Entrega:** análise de tendências, comparação entre ligas e temporadas e documentação dos achados e das limitações do estudo, sem afirmar causalidade direta.
+- **Análise:** tendências de posse, volume de passes e comparação entre campeões, rebaixados, ligas e temporadas.
+- **Entrega:** documentação dos achados e limitações, tratando os resultados como associações exploratórias e não como prova de causalidade.
 - **Ferramentas:** SQL, PostgreSQL, Python, Pandas, Matplotlib e Excel.
 
 ![Dashboard do Barcelona Sports Analytics](barcelona-dashboard.svg)
 
 **[Consultar análise, código e documentação ↗](https://github.com/MRC888/barcelona-sports-analytics)**
 
+---
+
+### 04 — Projeto Prático Udemy
+
+**Data Analytics · Projeto de treinamento**
+
+Projeto desenvolvido durante uma formação em Data Analytics na Udemy, percorrendo preparação, análise e visualização de uma base comercial até a construção de dois dashboards complementares.
+
+- **Dashboard 01 — Performance comercial:** receita, ticket médio, leads, conversão, estados, marcas, lojas e visitas por dia da semana.
+- **Dashboard 02 — Perfil dos leads:** gênero, status profissional, faixa etária e salarial, classificação e idade dos veículos e modelos mais visitados.
+- **Foco:** prática de análise, construção de indicadores e comunicação visual dos resultados.
+
+![Dashboard Udemy — Performance comercial](udemy-performance.png)
+
+![Dashboard Udemy — Perfil dos leads](udemy-perfil-leads.png)
+
+> Projeto guiado, desenvolvido a partir do conteúdo e da base fornecidos no curso. Ele é apresentado como evidência de prática e aprendizado, não como projeto autoral.
+
+## Projetos complementares
+
+Além dos cases de dados, o portfólio também reúne projetos que mostram programação, desenvolvimento e raciocínio de sistemas:
+
+- **Aurora Seeker — FIAP:** sistema em Python para análise de telemetria, integridade operacional, autonomia energética, decisão de decolagem e simulação de missão. **[GitHub ↗](https://github.com/MRC888/Aurora-PBL-FIAP)**
+- **MyCityHub:** projeto web criado para apresentar São Bento do Sapucaí por meio de calendário, natureza, cultura e gastronomia. **[GitHub ↗](https://github.com/MRC888/MyCityHub1)**
+
 ## O site
 
-Interface responsiva em tons escuros e ciano, com navegação por seções, alternância entre português e inglês e acesso aos projetos, à trajetória profissional e ao currículo.
+Interface responsiva em tons escuros e ciano, com navegação por seções, alternância entre português e inglês, animações de entrada e acesso aos projetos, trajetória profissional, competências, formação e contato.
 
 | Camada | Implementação |
 | --- | --- |
 | Estrutura | HTML5 |
 | Estilo | CSS com Grid, Flexbox e media queries |
 | Interações | JavaScript sem frameworks |
-| Publicação do site | Vercel |
+| Publicação | Vercel |
 
-As ferramentas de análise listadas nos cases pertencem aos respectivos projetos. Este repositório contém o site de apresentação.
+As ferramentas de análise listadas nos cases pertencem aos respectivos projetos. Este repositório contém o site de apresentação e os assets usados no portfólio.
 
-### Estrutura
+### Estrutura principal
 
 ```text
-├── index.html                     # Site, estilos e interações
-├── cv.pdf                         # Currículo profissional atualizado
-├── portfolio-home.png             # Capa do portfólio
-├── case-financeiro.png            # Apresentação do case financeiro
-├── barcelona-dashboard.svg         # Dashboard do Barcelona Sports Analytics
+├── index.html
+├── cv.pdf
+├── portfolio-home.png
+├── case-financeiro.png
+├── barcelona-dashboard.svg
+├── foods-and-goods.svg
+├── foods-and-goods-mobile.svg
+├── foods-panorama/
+├── udemy-performance.png
+├── udemy-perfil-leads.png
 └── README.md
 ```
 
@@ -83,23 +139,16 @@ As ferramentas de análise listadas nos cases pertencem aos respectivos projetos
 
 Clone o repositório e abra `index.html` no navegador. Não há dependências de build para instalar.
 
-Opcionalmente, com Python instalado, execute na pasta do projeto:
+Opcionalmente, com Python instalado:
 
 ```sh
 python -m http.server 8000
 ```
 
-Acesse `http://localhost:8000`. O dashboard do Barcelona é versionado junto ao site em SVG para manter nitidez, carregamento leve e consistência visual.
+Acesse `http://localhost:8000`.
 
 ## Contato
 
 Para oportunidades em **Análise de Dados e Business Intelligence**, entre em contato pelo [LinkedIn](https://www.linkedin.com/in/marcelo-augusto-santos88) ou pelo [e-mail profissional](mailto:marcelo123000@hotmail.com).
 
 **[Visitar o portfólio completo ↗](https://marcelo-santos-data.vercel.app)**
-
-
-### Foods & Goods — logística com SQL e Python
-
-Do panorama geral à comparação das distâncias de entregas de moto e do custo registrado por km nos estados dos hubs. Inclui contexto simulado, métodos, resultados e limites, sem equiparar custo à remuneração do entregador.
-
-[Ver projeto no GitHub](https://github.com/MRC888/foods-and-goods) · [Notebook](https://github.com/MRC888/foods-and-goods/blob/main/01_logistica.ipynb)
