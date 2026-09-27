@@ -93,9 +93,16 @@ Projeto desenvolvido durante uma formação em Data Analytics na Udemy, percorre
 - **Dashboard 02 — Perfil dos leads:** gênero, status profissional, faixa etária e salarial, classificação e idade dos veículos e modelos mais visitados.
 - **Foco:** prática de análise, construção de indicadores e comunicação visual dos resultados.
 
-![Dashboard Udemy — Performance comercial](udemy-performance.png)
-
-![Dashboard Udemy — Perfil dos leads](udemy-perfil-leads.png)
+<table>
+  <tr>
+    <td width="50%" align="center">
+      <img src="udemy-performance.png" alt="Dashboard Udemy — Performance comercial" width="420">
+    </td>
+    <td width="50%" align="center">
+      <img src="udemy-perfil-leads.png" alt="Dashboard Udemy — Perfil dos leads" width="420">
+    </td>
+  </tr>
+</table>
 
 > Projeto guiado, desenvolvido a partir do conteúdo e da base fornecidos no curso. Ele é apresentado como evidência de prática e aprendizado, não como projeto autoral.
 
