@@ -111,6 +111,7 @@ Projeto desenvolvido durante uma formação em Data Analytics na Udemy, percorre
 Além dos cases de dados, o portfólio também reúne projetos que mostram programação, desenvolvimento e raciocínio de sistemas:
 
 - **Aurora Seeker — FIAP:** sistema em Python para análise de telemetria, integridade operacional, autonomia energética, decisão de decolagem e simulação de missão. **[GitHub ↗](https://github.com/MRC888/Aurora-PBL-FIAP)**
+- **Aurora Siger — FIAP, Fase 2:** protótipo MGPEB em Python para decisões de pouso, prioridade dos módulos e estabilização da base, com listas, filas, pilhas e painel HTML de 15 cenários simulados. **[GitHub ↗](https://github.com/MRC888/pouso_aurora)** · **[Painel online ↗](https://mrc888.github.io/aurora-painel/)** · **[Relatório PDF ↗](https://github.com/MRC888/pouso_aurora/blob/main/RELATORIO_FINAL_EQUIPE.pdf)**
 - **MyCityHub:** projeto web criado para apresentar São Bento do Sapucaí por meio de calendário, natureza, cultura e gastronomia. **[GitHub ↗](https://github.com/MRC888/MyCityHub1)**
 
 ## O site
