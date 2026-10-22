@@ -64,7 +64,7 @@ O case é apresentado sem identificação do cliente ou exposição de valores f
 
 ### 03 — Barcelona Sports Analytics
 
-**Sports Analytics · Trabalho de Conclusão de Curso**
+**Sports Analytics · Projeto de Análise de Dados**
 
 Investigação quantitativa sobre padrões de posse, passes e desempenho competitivo no futebol europeu, com foco no modelo de jogo do Barcelona entre **2004/05 e 2019/20**.
 
