@@ -891,18 +891,12 @@ section:not(.hero)::before{width:min(1180px,calc(100% - var(--page-gutter) * 2))
 @media(max-width:900px){.motion-v7 .motion-item.motion-left,.motion-v7 .motion-item.motion-right{transform:translate3d(0,28px,0)}.motion-v7 .motion-item.is-visible{transform:none}}
 @media(pointer:coarse),(prefers-reduced-motion:reduce){.hero-pointer,.hero-network{display:none}.hero h1{translate:none!important}}
 @media(prefers-reduced-motion:reduce){.motion-v7 .motion-item{filter:none!important}.assemble-child{opacity:1;transform:none}}
-.motion-toggle{border:1px solid rgba(88,220,255,.45);border-radius:9px;background:rgba(88,220,255,.08);color:var(--cyan);font-size:11px;padding:8px 10px;cursor:pointer;white-space:nowrap}.motion-toggle:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}@media(max-width:650px){header{padding:0 10px}header nav{gap:9px}.motion-toggle{font-size:10px;padding:7px}}
 </style><script id="motion-preference">
-(()=>{
- let choice=null;try{choice=localStorage.getItem('portfolio-motion')}catch{}
- const requested=new URLSearchParams(location.search).get('animacoes');
- if(requested==='1'||requested==='0'){choice=requested==='1'?'full':'reduced';try{localStorage.setItem('portfolio-motion',choice)}catch{}}
- window.portfolioReducedMotion=choice==='reduced'||(choice!=='full'&&matchMedia('(prefers-reduced-motion: reduce)').matches);
- document.documentElement.dataset.motion=window.portfolioReducedMotion?'reduced':'full';
- if(choice){document.querySelectorAll('style').forEach(style=>{
-  style.textContent=style.textContent.replace(/\(prefers-reduced-motion:\s*reduce\)/g,choice==='full'?'(max-width:0px)':'(min-width:0px)').replace(/\(prefers-reduced-motion:\s*no-preference\)/g,choice==='full'?'(min-width:0px)':'(max-width:0px)');
- });}
-})();
+window.portfolioReducedMotion=false;
+document.documentElement.dataset.motion='full';
+document.querySelectorAll('style').forEach(style=>{
+ style.textContent=style.textContent.replace(/\(prefers-reduced-motion:\s*reduce\)/g,'(max-width:0px)').replace(/\(prefers-reduced-motion:\s*no-preference\)/g,'(min-width:0px)');
+});
 </script>
 </head><body>
 <header id="hdr"><a class="brand" href="#top">Marcelo Santos</a><nav><a href="#projetos" data-pt="Projetos" data-en="Projects">Projetos</a><a href="#sobre" data-pt="Sobre" data-en="About">Sobre</a><a href="#experiencia" data-pt="Experiência" data-en="Experience">Experiência</a><a href="#skills" data-pt="Competências" data-en="Skills">Competências</a><a href="#contato" data-pt="Contato" data-en="Contact">Contato</a><button class="lang" id="lang">PT-BR / EN</button></nav></header>
@@ -1258,15 +1252,5 @@ if(hero&&!reduceMotion){
  document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(frame);frame=0;}else start();});
 })();
 </script>
-<script id="motion-control">
-(()=>{
- const button=document.createElement('button');button.type='button';button.className='motion-toggle';
- const reduced=window.portfolioReducedMotion;
- button.dataset.pt=reduced?'Ativar animações':'Pausar animações';button.dataset.en=reduced?'Enable animations':'Pause animations';
- button.textContent=document.documentElement.lang==='en'?button.dataset.en:button.dataset.pt;
- button.title=reduced?'Ativar os efeitos somente neste site':'Desativar os efeitos somente neste site';
- button.addEventListener('click',()=>{const url=new URL(location.href);url.searchParams.set('animacoes',reduced?'1':'0');location.assign(url.href)});
- document.querySelector('header nav').prepend(button);
-})();
-</script>
+
 </body></html>
