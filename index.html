@@ -891,7 +891,20 @@ section:not(.hero)::before{width:min(1180px,calc(100% - var(--page-gutter) * 2))
 @media(max-width:900px){.motion-v7 .motion-item.motion-left,.motion-v7 .motion-item.motion-right{transform:translate3d(0,28px,0)}.motion-v7 .motion-item.is-visible{transform:none}}
 @media(pointer:coarse),(prefers-reduced-motion:reduce){.hero-pointer,.hero-network{display:none}.hero h1{translate:none!important}}
 @media(prefers-reduced-motion:reduce){.motion-v7 .motion-item{filter:none!important}.assemble-child{opacity:1;transform:none}}
-</style></head><body>
+.motion-toggle{border:1px solid rgba(88,220,255,.45);border-radius:9px;background:rgba(88,220,255,.08);color:var(--cyan);font-size:11px;padding:8px 10px;cursor:pointer;white-space:nowrap}.motion-toggle:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}@media(max-width:650px){header{padding:0 10px}header nav{gap:9px}.motion-toggle{font-size:10px;padding:7px}}
+</style><script id="motion-preference">
+(()=>{
+ let choice=null;try{choice=localStorage.getItem('portfolio-motion')}catch{}
+ const requested=new URLSearchParams(location.search).get('animacoes');
+ if(requested==='1'||requested==='0'){choice=requested==='1'?'full':'reduced';try{localStorage.setItem('portfolio-motion',choice)}catch{}}
+ window.portfolioReducedMotion=choice==='reduced'||(choice!=='full'&&matchMedia('(prefers-reduced-motion: reduce)').matches);
+ document.documentElement.dataset.motion=window.portfolioReducedMotion?'reduced':'full';
+ if(choice){document.querySelectorAll('style').forEach(style=>{
+  style.textContent=style.textContent.replace(/\(prefers-reduced-motion:\s*reduce\)/g,choice==='full'?'(max-width:0px)':'(min-width:0px)').replace(/\(prefers-reduced-motion:\s*no-preference\)/g,choice==='full'?'(min-width:0px)':'(max-width:0px)');
+ });}
+})();
+</script>
+</head><body>
 <header id="hdr"><a class="brand" href="#top">Marcelo Santos</a><nav><a href="#projetos" data-pt="Projetos" data-en="Projects">Projetos</a><a href="#sobre" data-pt="Sobre" data-en="About">Sobre</a><a href="#experiencia" data-pt="Experiência" data-en="Experience">Experiência</a><a href="#skills" data-pt="Competências" data-en="Skills">Competências</a><a href="#contato" data-pt="Contato" data-en="Contact">Contato</a><button class="lang" id="lang">PT-BR / EN</button></nav></header>
 <main>
 <section class="hero" id="top"><div class="grid"></div><div class="hero-orbit one"></div><div class="hero-orbit two"></div><i class="data-pulse p1"></i><i class="data-pulse p2"></i><i class="data-pulse p3"></i><div class="wrap"><div class="meta">MARCELO SANTOS · DATA ANALYST</div><div style="position:relative"><h1><span data-pt="TRANSFORMANDO DADOS" data-en="TURNING DATA">TRANSFORMANDO DADOS</span><span class="outline" data-pt="EM INTELIGÊNCIA." data-en="INTO INTELLIGENCE.">EM INTELIGÊNCIA.</span></h1></div><div class="hero-bottom"><p data-pt="Data Analyst com experiência prática no fiscal e financeiro, usando SQL, BI e Python para transformar informação dispersa em decisões mais claras." data-en="Data Analyst with hands-on experience in tax and finance, using SQL, BI and Python to turn scattered information into clearer decisions.">Data Analyst com experiência prática no fiscal e financeiro, usando SQL, BI e Python para transformar informação dispersa em decisões mais claras.</p><div><a class="cta" href="#projetos" data-pt="Explorar projetos ↘" data-en="Explore projects ↘">Explorar projetos ↘</a><div class="links"><a href="https://www.linkedin.com/in/marcelo-augusto-santos88" target="_blank">LinkedIn</a><a href="https://github.com/MRC888" target="_blank">GitHub</a><a href="cv.pdf" target="_blank" data-pt="Currículo" data-en="Resume">Currículo</a></div><div class="stackline"><span>SQL</span><span>PYTHON</span><span>POWER BI</span><span>POSTGRESQL</span><span>TABLEAU</span></div></div></div></div></section>
@@ -915,7 +928,7 @@ section:not(.hero)::before{width:min(1180px,calc(100% - var(--page-gutter) * 2))
 <section class="contact" id="contato"><div class="wrap"><div><span class="eyebrow" data-pt="CONTATO" data-en="CONTACT">CONTATO</span><h2 data-pt="Tem uma oportunidade? Fale comigo." data-en="Have an opportunity? Let's talk.">Tem uma oportunidade? Fale comigo.</h2><p class="lead" data-pt="Busco uma oportunidade em dados para unir capacidade analítica, visão de negócio e uma curva de aprendizado rápida. Se esse perfil fizer sentido para sua equipe, vamos conversar." data-en="I am looking for a data opportunity where I can combine analytical capability, business context and a fast learning curve. If that profile fits your team, let's talk.">Busco uma oportunidade em dados para unir capacidade analítica, visão de negócio e uma curva de aprendizado rápida. Se esse perfil fizer sentido para sua equipe, vamos conversar.</p></div><div><a class="cta" href="https://wa.me/5512991805596?text=Ol%C3%A1%2C%20Marcelo%21%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20com%20voc%C3%AA." target="_blank" data-pt="Conversar no WhatsApp ↗" data-en="Message on WhatsApp ↗">Conversar no WhatsApp ↗</a><div class="links" style="justify-content:flex-start"><a href="https://www.linkedin.com/in/marcelo-augusto-santos88" target="_blank">LinkedIn</a><a href="mailto:marcelo123000@hotmail.com">E-mail</a></div><div class="note">marcelo123000@hotmail.com</div></div></div></section>
 </main><footer><div class="wrap">Marcelo Santos · Data Analyst · 2026 · <span data-pt="Obrigado pela visita." data-en="Thanks for visiting.">Obrigado pela visita.</span></div></footer>
 <script>
-const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reduceMotion=window.portfolioReducedMotion;
 document.documentElement.classList.add('motion-ready','motion-v7');
 
 let lang='pt';
@@ -1077,7 +1090,7 @@ if(hero&&!reduceMotion){
 </script>
 <script id="motion-v8-lite-script">
 (function(){
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  if(window.portfolioReducedMotion)return;
   if('IntersectionObserver' in window){
     var scanObs=new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
@@ -1125,7 +1138,7 @@ if(hero&&!reduceMotion){
 </script>
 <script id="kinetic-headings-v10">
 (function(){
-  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reduce=window.portfolioReducedMotion;
   var selector='section:not(.hero) > .wrap > h2, .project .copy > h3, .case > h4, .complementary > h2, .foods-project .foods-stage-title';
   var observer=null;
 
@@ -1209,7 +1222,7 @@ if(hero&&!reduceMotion){
  function select(tab){tabs.forEach(t=>{const active=t===tab;t.setAttribute('aria-selected',String(active));t.tabIndex=active?0:-1;document.getElementById(t.getAttribute('aria-controls')).hidden=!active;});}
  tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>select(tab));tab.addEventListener('keydown',e=>{let n;if(e.key==='ArrowRight')n=(i+1)%tabs.length;else if(e.key==='ArrowLeft')n=(i+tabs.length-1)%tabs.length;else if(e.key==='Home')n=0;else if(e.key==='End')n=tabs.length-1;else return;e.preventDefault();select(tabs[n]);tabs[n].focus();});});
  // Replay the opening when returning to the top, including from a project deep link.
- if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+ if(!window.portfolioReducedMotion){
   let leftHero=false;const hero=document.querySelector('.hero');
   new IntersectionObserver(entries=>entries.forEach(e=>{if(!e.isIntersecting){leftHero=true;}else if(leftHero){hero.querySelectorAll('.meta,h1 span,.hero-bottom').forEach(el=>{el.style.animation='none';void el.offsetWidth;el.style.animation='';});leftHero=false;}}),{threshold:.2}).observe(hero);
  }
@@ -1218,7 +1231,7 @@ if(hero&&!reduceMotion){
 
 <script id="hero-interactive-network">
 (()=>{
- if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ if(window.portfolioReducedMotion)return;
  document.querySelectorAll('.project .copy,.next-dashboard,.next-visual,.case').forEach(parent=>{
    [...parent.children].filter(e=>!e.matches('h3,h4,.eyebrow,.bar')).forEach((el,i)=>{el.classList.add('assemble-child');el.style.setProperty('--assemble-delay',`${130+Math.min(i,5)*90}ms`);});
  });
@@ -1243,6 +1256,17 @@ if(hero&&!reduceMotion){
  hero.addEventListener('pointerleave',()=>{active=false;hero.classList.remove('pointer-inside');hero.style.setProperty('--title-x','0px');hero.style.setProperty('--title-y','0px');});
  new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible)start();else{cancelAnimationFrame(frame);frame=0;}},{threshold:0}).observe(hero);
  document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(frame);frame=0;}else start();});
+})();
+</script>
+<script id="motion-control">
+(()=>{
+ const button=document.createElement('button');button.type='button';button.className='motion-toggle';
+ const reduced=window.portfolioReducedMotion;
+ button.dataset.pt=reduced?'Ativar animações':'Pausar animações';button.dataset.en=reduced?'Enable animations':'Pause animations';
+ button.textContent=document.documentElement.lang==='en'?button.dataset.en:button.dataset.pt;
+ button.title=reduced?'Ativar os efeitos somente neste site':'Desativar os efeitos somente neste site';
+ button.addEventListener('click',()=>{const url=new URL(location.href);url.searchParams.set('animacoes',reduced?'1':'0');location.assign(url.href)});
+ document.querySelector('header nav').prepend(button);
 })();
 </script>
 </body></html>
