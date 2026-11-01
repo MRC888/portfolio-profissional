@@ -205,41 +205,30 @@
     });
   }
 
-  /* ---------- Cases expansíveis: a página fica curta, o detalhe continua lá ---------- */
-  const grouped = new Set();
-  let groupId = 0;
-  document.querySelectorAll('.case, .foods-stage:not(.foods-question)').forEach(first => {
-    if (grouped.has(first)) return;
-    const items = [first];
-    let sib = first.nextElementSibling;
-    const same = el => el && el.matches(first.matches('.case') ? '.case' : '.foods-stage:not(.foods-question)');
-    while (same(sib)) { items.push(sib); sib = sib.nextElementSibling; }
-    items.forEach(el => grouped.add(el));
-    const isProcess = first.matches('.foods-stage');
-    const id = `more-${++groupId}`;
+  /* ---------- Projetos resumidos: o detalhe fica em "ver mais" ---------- */
+  document.querySelectorAll('.pj-more').forEach(more => {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'more-toggle';
     btn.setAttribute('aria-expanded', 'false');
-    btn.setAttribute('aria-controls', id);
-    btn.innerHTML = isProcess
-      ? '<span><span data-pt="Ver exploração e preparação dos dados" data-en="See data exploration and preparation"></span><br><small data-pt="Panorama, validação e regras dos indicadores" data-en="Overview, validation and metric rules"></small></span><span class="pm" aria-hidden="true">+</span>'
-      : '<span><span data-pt="Ver o case completo" data-en="See the full case"></span><br><small data-pt="Processo, evidências e limites da análise" data-en="Process, evidence and limits of the analysis"></small></span><span class="pm" aria-hidden="true">+</span>';
+    btn.setAttribute('aria-controls', more.id);
+    btn.innerHTML = `<span class="more-text"><span data-pt="Ver mais sobre o projeto" data-en="See more about the project"></span><small data-pt="${more.dataset.morePt}" data-en="${more.dataset.moreEn}"></small></span><span class="pm" aria-hidden="true">+</span>`;
     btn.querySelectorAll('[data-pt]').forEach(s => { s.textContent = s.dataset[isEn() ? 'en' : 'pt']; });
     const body = document.createElement('div');
     body.className = 'more-body';
-    body.id = id;
-    const inner = document.createElement('div');
-    body.append(inner);
-    first.before(btn, body);
-    items.forEach(el => inner.append(el));
-    inner.inert = true;
+    more.before(btn, body);
+    body.append(more);
+    more.inert = true;
     btn.addEventListener('click', () => {
       const open = btn.getAttribute('aria-expanded') !== 'true';
       btn.setAttribute('aria-expanded', String(open));
+      btn.querySelector('[data-pt]').dataset.pt = open ? 'Ver menos' : 'Ver mais sobre o projeto';
+      btn.querySelector('[data-pt]').dataset.en = open ? 'See less' : 'See more about the project';
+      btn.querySelector('[data-pt]').textContent = btn.querySelector('[data-pt]').dataset[isEn() ? 'en' : 'pt'];
       body.classList.toggle('open', open);
-      inner.inert = !open;
-      if (open) inner.querySelectorAll('.motion-item,.kinetic-heading').forEach(el => el.classList.add('is-visible', 'is-assembled'));
+      more.inert = !open;
+      if (open) more.querySelectorAll('.motion-item,.kinetic-heading,.assemble-child').forEach(el => el.classList.add('is-visible', 'is-assembled'));
+      else btn.closest('.pj').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
     });
   });
 
@@ -310,13 +299,13 @@
   }
 
   function nextLab() {
-    const anchor = document.querySelector('.next-dashboard');
-    if (!anchor || !DATA) return;
+    const host = document.getElementById('next-more');
+    if (!host || !DATA) return;
     const c = DATA.cvm;
     const box = document.createElement('div');
     box.className = 'lab';
     box.id = 'lab-next';
-    anchor.after(box);
+    host.prepend(box);
     const metrics = [
       { id: 'auc', label: () => 'AUC', max: 1, f: v => fmt(v, 3), ci: true,
         note: () => t('AUC: chance de o modelo dar nota maior a um caso real do que a um caso comum (0,5 = sorteio). Traço = intervalo de 95%.', 'AUC: chance that the model scores a real case above an ordinary one (0.5 = coin flip). Line = 95% interval.') },
@@ -389,6 +378,85 @@
     document.getElementById('lang')?.addEventListener('click', () => setTimeout(render, 0));
   }
 
+  function barcaLab() {
+    const host = document.getElementById('lab-barca-slot');
+    if (!host || !DATA || !DATA.barca) return;
+    const b = DATA.barca;
+    const box = document.createElement('div');
+    box.className = 'lab';
+    box.id = 'lab-barca';
+    host.append(box);
+    let current = 'possession';
+    const metrics = {
+      possession: { label: () => t('Posse de bola', 'Possession'), own: b.possession, ref: b.spainPossession, lo: 40, hi: 72, ticks: [45, 55, 65], f: v => fmt(v, 1) + '%', gap: v => fmt(v, 1) + ' p.p.' },
+      passes: { label: () => t('Passes por jogo', 'Passes per game'), own: b.passes, ref: b.spainPasses, lo: 300, hi: 720, ticks: [400, 500, 600, 700], f: v => fmt(v), gap: v => fmt(v) },
+    };
+    const L = 44, R = 16, T = 18, B = 34;
+    let W = 680, H = 280;
+    const x = i => L + (i / (b.seasons.length - 1)) * (W - L - R);
+    function render() {
+      box.innerHTML = `<div class="lab-head"><div><span class="label">${t('INTERATIVO · 16 TEMPORADAS', 'INTERACTIVE · 16 SEASONS')}</span>
+        <h4>${t('O Barcelona fora da curva da própria liga', 'Barcelona off the curve of its own league')}</h4></div></div>
+        <div class="chart line-chart"></div>
+        <div class="legend"><span><i class="k-own"></i>Barcelona</span><span><i class="k-ref"></i>${t('Média da liga espanhola', 'Spanish league average')}</span><span><i class="k-era"></i>${t('Era Guardiola', 'Guardiola era')}</span></div>
+        <p class="lab-insight"></p>
+        <p class="lab-note">${t('Passe o mouse ou toque nas temporadas. Posse e passes são aproximações exploratórias construídas no projeto para comparação histórica, não estatísticas oficiais (ver metodologia no GitHub).', 'Hover or tap the seasons. Possession and passes are exploratory approximations built in the project for historical comparison, not official statistics (see methodology on GitHub).')}</p>`;
+      box.querySelector('.lab-head').append(seg(Object.keys(metrics).map(id => ({ id, label: metrics[id].label })), current, id => { current = id; draw(); }));
+      draw();
+    }
+    function draw() {
+      const m = metrics[current];
+      const y = v => T + (1 - (v - m.lo) / (m.hi - m.lo)) * (H - T - B);
+      const path = arr => arr.map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join('');
+      const [g0, g1] = b.guardiola;
+      const el = box.querySelector('.line-chart');
+      [W, H] = el.clientWidth < 520 ? [400, 300] : [680, 280]; // no celular, menos largura = rótulos legíveis
+      el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${b.seasons.map((s, i) => `${s}: Barcelona ${m.f(m.own[i])}, ${t('liga', 'league')} ${m.f(m.ref[i])}`).join('; ')}">
+        <rect x="${x(g0) - 10}" y="${T}" width="${x(g1) - x(g0) + 20}" height="${H - T - B}" rx="8" fill="rgba(88,220,255,.07)"></rect>
+        ${m.ticks.map(v => `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="rgba(255,255,255,.06)"></line><text x="${L - 8}" y="${y(v) + 4}" text-anchor="end" font-size="11" class="muted">${fmt(v)}</text>`).join('')}
+        ${b.seasons.map((s, i) => (i % (W < 500 ? 5 : 3) === 0 || i === b.seasons.length - 1) ? `<text x="${x(i)}" y="${H - 10}" text-anchor="middle" font-size="11" class="muted">${s}</text>` : '').join('')}
+        <path d="${path(m.ref)}" fill="none" stroke="rgba(165,185,255,.7)" stroke-width="2" stroke-dasharray="5 5"></path>
+        <path class="draw" d="${path(m.own)}" fill="none" stroke="#58dcff" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path>
+        <g class="hover" opacity="0"><line y1="${T}" y2="${H - B}" stroke="rgba(255,255,255,.25)"></line><circle r="5" fill="#58dcff"></circle><circle r="4" fill="#a5b9ff"></circle>
+          <g class="tip"><rect rx="8" width="170" height="54" fill="#0b1114" stroke="rgba(88,220,255,.35)"></rect><text class="t1" x="10" y="21" font-size="12" font-weight="700"></text><text class="t2" x="10" y="41" font-size="12"></text></g></g></svg>`;
+      const svg = el.querySelector('svg'), hover = svg.querySelector('.hover'), line = svg.querySelector('.draw');
+      if (!reduce) {
+        const len = line.getTotalLength();
+        line.style.strokeDasharray = len;
+        line.style.strokeDashoffset = len;
+        line.getBoundingClientRect();
+        line.style.transition = 'stroke-dashoffset 1.4s cubic-bezier(.22,1,.36,1)';
+        line.style.strokeDashoffset = 0;
+      }
+      const show = clientX => {
+        const r = svg.getBoundingClientRect();
+        const sx = (clientX - r.left) * (W / r.width);
+        const i = Math.max(0, Math.min(b.seasons.length - 1, Math.round(((sx - L) / (W - L - R)) * (b.seasons.length - 1))));
+        const cx = x(i), [c1, c2] = hover.querySelectorAll('circle'), guide = hover.querySelector('line'), tip = hover.querySelector('.tip');
+        hover.setAttribute('opacity', '1');
+        guide.setAttribute('x1', cx); guide.setAttribute('x2', cx);
+        c1.setAttribute('cx', cx); c1.setAttribute('cy', y(m.own[i]));
+        c2.setAttribute('cx', cx); c2.setAttribute('cy', y(m.ref[i]));
+        tip.setAttribute('transform', `translate(${Math.min(cx + 12, W - R - 170)},${T + 6})`);
+        tip.querySelector('.t1').textContent = `20${b.seasons[i]} · Barcelona ${m.f(m.own[i])}`;
+        tip.querySelector('.t2').textContent = `${t('Liga', 'League')} ${m.f(m.ref[i])} · +${m.gap(m.own[i] - m.ref[i])}`;
+      };
+      svg.addEventListener('pointermove', e => show(e.clientX));
+      svg.addEventListener('pointerdown', e => show(e.clientX));
+      svg.addEventListener('pointerleave', () => hover.setAttribute('opacity', '0'));
+      const peak = m.own.indexOf(Math.max(...m.own));
+      box.querySelector('.lab-insight').innerHTML = t(
+        `Pico em <b>20${b.seasons[peak]}</b>: ${m.f(m.own[peak])}, <b>${m.gap(m.own[peak] - m.ref[peak])}</b> acima da média da liga. A faixa destacada é a era Guardiola.`,
+        `Peak in <b>20${b.seasons[peak]}</b>: ${m.f(m.own[peak])}, <b>${m.gap(m.own[peak] - m.ref[peak])}</b> above the league average. The highlighted band is the Guardiola era.`);
+    }
+    render();
+    // A linha se desenha quando o gráfico entra na tela, não no carregamento.
+    const seen = new IntersectionObserver(([e]) => { if (e.isIntersecting) { draw(); seen.disconnect(); } }, { threshold: 0.4 });
+    seen.observe(box);
+    document.getElementById('lang')?.addEventListener('click', () => setTimeout(render, 0));
+  }
+
   nextLab();
   foodsLab();
+  barcaLab();
 })();
