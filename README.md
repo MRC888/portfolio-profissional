@@ -19,7 +19,32 @@ Sou Marcelo Santos e atuo na interface entre **dados, processos e negócio**, co
 
 ## Projetos em destaque
 
-### 01 — Foods & Goods
+### 01 — Next Step SP
+
+**Financial Analytics · Data + AI**
+
+Plataforma de dados financeiros ponta a ponta construída com dados públicos da CVM, conectando ingestão, modelagem, métricas, dashboard, consultas com IA e um estudo exploratório de risco financeiro.
+
+| Dados processados | Métricas semânticas | Avaliação do agente |
+| :---: | :---: | :---: |
+| **35,2 mi de linhas** | **10 métricas** | **20/20** |
+
+- **Pipeline:** ingestão incremental em Python, PostgreSQL e modelagem com dbt.
+- **Camada semântica:** MetricFlow como fonte única das métricas usadas pelo dashboard e pelo agente.
+- **Aplicação:** Streamlit + Plotly para análise por empresa, setor, ranking e mapa de risco.
+- **IA:** agente em português que consulta números pela camada semântica, sem calcular métricas por conta própria.
+- **ML:** modelo exploratório de dificuldade financeira avaliado temporalmente, com limitações documentadas.
+- **Ferramentas:** Python, PostgreSQL, dbt, MetricFlow, Streamlit, Plotly, scikit-learn e Claude.
+
+![Painel do Next Step SP](next-step/painel-empresa.png)
+
+**[Explorar projeto no GitHub ↗](https://github.com/MRC888/Next-step-SP)**
+
+> O estudo de risco é exploratório, não fornece probabilidades calibradas e não constitui recomendação de investimento.
+
+---
+
+### 02 — Foods & Goods
 
 **Logistics Analytics · SQL + Python**
 
@@ -41,7 +66,7 @@ Projeto construído a partir de uma base pública do Delivery Center para explor
 
 ---
 
-### 02 — Análise de Honorário
+### 03 — Análise de Honorário
 
 **Business Analytics · Projeto real**
 
@@ -62,7 +87,7 @@ O case é apresentado sem identificação do cliente ou exposição de valores f
 
 ---
 
-### 03 — Barcelona Sports Analytics
+### 04 — Barcelona Sports Analytics
 
 **Sports Analytics · Projeto de Análise de Dados**
 
@@ -83,7 +108,7 @@ Investigação quantitativa sobre padrões de posse, passes e desempenho competi
 
 ---
 
-### 04 — Projeto Prático Udemy
+### 05 — Projeto Prático Udemy
 
 **Data Analytics · Projeto de treinamento**
 
@@ -138,6 +163,7 @@ As ferramentas de análise listadas nos cases pertencem aos respectivos projetos
 ├── foods-and-goods.svg
 ├── foods-and-goods-mobile.svg
 ├── foods-panorama/
+├── next-step/
 ├── udemy-performance.png
 ├── udemy-perfil-leads.png
 └── README.md
