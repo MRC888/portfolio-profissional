@@ -2,7 +2,7 @@
    cards com profundidade, cases expansíveis e gráficos interativos. */
 (() => {
   const DATA = window.PORTFOLIO_DATA;
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduce = !!window.portfolioReducedMotion; // definido no index.html: animações sempre ligadas
   const finePointer = matchMedia('(pointer: fine)').matches;
   const isEn = () => document.documentElement.lang === 'en';
   const t = (pt, en) => (isEn() ? en : pt);
